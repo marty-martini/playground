@@ -1,0 +1,25 @@
+name: play of GITHUB_OUTPUT
+
+on:
+  workflow_dispatch
+
+jobs:
+  github_output:
+    name: github_output name
+    runs-on: ubuntu-latest
+
+    outputs:
+      first: ${{ steps.step1.outputs.hoge }}
+
+    steps:
+      - id: step1
+        run: echo "hoge=add github_output env" >> $GITHUB_OUTPUT
+
+  hoge:
+    name: hoge name
+    runs-on: ubuntu-latest
+    needs: github_output
+
+    steps:
+      - run: |
+          echo ${{ needs.github_output.outputs.first }}

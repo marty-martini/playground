@@ -1,0 +1,20 @@
+name: play of GITHUB_ENV
+
+on:
+  workflow_dispatch
+
+jobs:
+  github_env:
+    name: github_env name
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo env.ADD_ENV is ${{ env.ADD_ENV }}
+
+      - run: |
+          echo "ADD_ENV=true" >> $GITHUB_ENV
+
+      - run: |
+          echo env.ADD_ENV is ${{ env.ADD_ENV }}
+  
